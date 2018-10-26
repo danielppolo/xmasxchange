@@ -1,0 +1,20 @@
+<h1><%= @exchange.name %></h1>
+<p><%= @exchange.status %></p>
+<!--%= link_to 'Close exchange', exchange_path(@exchange), method: :patch %-->
+
+
+<%= simple_form_for [@exchange, @person] do |f| %>
+  <%= f.input :name %>
+  <%= f.input :key, as: :password %>
+  <%= f.submit "Add person", class: "btn btn-primary" %>
+<% end %>
+
+<h3>Participants</h3>
+<ul>
+  <% @exchange.people.each do |person| %>
+    <li><%= link_to person.name, person_path(person) %></li>
+  <% end %>
+</ul>
+
+
+<%= link_to 'Sort', exchange_sort_path(@exchange) %>

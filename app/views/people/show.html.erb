@@ -1,0 +1,21 @@
+<h1>Welcome <%= @person.name %></h1>
+
+<h3>Your gift list</h3>
+<ul>
+  <% @person.gifts.each do |gift| %>
+    <li><%= gift.name %></li>
+  <% end %>
+</ul>
+
+<%= simple_form_for [@person, @gift] do |f| %>
+  <%= f.input :name %>
+  <%= f.submit "Add gift to list", class: "btn btn-primary" %>
+<% end %>
+
+<h2>Reveal peer</h2>
+<p>Your peer is:<%= @person.person.name %></p>
+<span>See his/her giftlist</span>
+<!--%= simple_form_for (@person) do |f| %>
+  %= f.input :key %>
+  %= f.submit "Reveal", class: "btn btn-primary" %>
+% end % -->

@@ -1,0 +1,15 @@
+<h1>Exchanges</h1>
+
+<%= simple_form_for (@exchange) do |f| %>
+  <%= f.input :name %>
+  <%= f.input :date, start_year: Date.today.year,
+      end_year: Date.today.year + 1, start_month: Date.today.month,
+      order: [:day, :month, :year] %>
+  <%= f.submit "Start your exchange", class: "btn btn-primary" %>
+<% end %>
+
+
+<h2>Current exchanges</h2>
+<% @exchanges.each do |x| %>
+  <%= link_to x.name, exchange_path(x) %>
+<% end %>
