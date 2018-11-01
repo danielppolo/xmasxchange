@@ -1,15 +1,42 @@
-<h1>Exchanges</h1>
+<div class="window-wrapper flex-center" id="cover">
+  <div>
+    <h1 class="text-center">xmasxchange</h1>
 
-<%= simple_form_for (@exchange) do |f| %>
-  <%= f.input :name %>
-  <%= f.input :date, start_year: Date.today.year,
-      end_year: Date.today.year + 1, start_month: Date.today.month,
-      order: [:day, :month, :year] %>
-  <%= f.submit "Start your exchange", class: "btn btn-primary" %>
-<% end %>
+    <%= simple_form_for (@exchange) do |f| %>
+    <%= f.input :name, placeholder: 'name your event' %>
+    <%= f.input :date, start_year: Date.today.year,
+    end_year: Date.today.year + 1, start_month: Date.today.month,
+    order: [:day, :month, :year] %>
+    <%= f.button :button, "Start your exchange", class: "button" %>
+    <% end %>
+  </div>
+  <a href="#current-exchanges" class="next-page">
+    <div class="flex-vertical flex-center">
+      <p>See all events</p>
+      <i class="fas fa-angle-down animated pulse infinite"></i>
+    </div>
+  </a>
+</div>
 
+<div class="window-wrapper flex-top wrapper-padding" id="current-exchanges">
+   <div>
+   <h2 class="text-center">past</h2>
+   <% @past.each do |x| %>
+   <%= link_to x.name, exchange_path(x), class: 'text-center' %>
+   <% end %>
+ </div>
 
-<h2>Current exchanges</h2>
-<% @exchanges.each do |x| %>
-  <%= link_to x.name, exchange_path(x) %>
-<% end %>
+ <div>
+   <h2 class="text-center">today</h2>
+   <% @today.each do |x| %>
+   <%= link_to x.name, exchange_path(x), class: 'text-center' %>
+   <% end %>
+ </div>
+
+ <div>
+  <h2 class="text-center">upcoming</h2>
+   <% @active.each do |x| %>
+   <%= link_to x.name, exchange_path(x), class: 'text-center' %>
+   <% end %>
+ </div>
+</div>

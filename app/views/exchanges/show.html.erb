@@ -1,20 +1,26 @@
-<h1><%= @exchange.name %></h1>
-<p><%= @exchange.status %></p>
-<!--%= link_to 'Close exchange', exchange_path(@exchange), method: :patch %-->
+<div class="window-wrapper flex-center">
+  <div class="relative">
+    <h1><%= @exchange.name %></h1>
+    <span class="badge"><%= @exchange.status %></span>
+    <p><%= @exchange.date %></p>
+    <!--%= link_to 'Close exchange', exchange_path(@exchange), method: :patch %-->
 
 
-<%= simple_form_for [@exchange, @person] do |f| %>
-  <%= f.input :name %>
-  <%= f.input :key, as: :password %>
-  <%= f.submit "Add person", class: "btn btn-primary" %>
-<% end %>
+    <h3>Participants</h3>
+    <ul>
+      <% @exchange.people.each do |person| %>
+      <li><%= link_to person.name, person_path(person) %></li>
+      <% end %>
+    </ul>
+    <%= simple_form_for [@exchange, @person] do |f| %>
+    <%= f.input :name, placeholder: 'name' %>
+    <%= f.input :key, as: :password, placeholder: 'secret key' %>
+    <%= f.button :button, "add person", class: "button-sm" %>
+    <% end %>
 
-<h3>Participants</h3>
-<ul>
-  <% @exchange.people.each do |person| %>
-    <li><%= link_to person.name, person_path(person) %></li>
-  <% end %>
-</ul>
 
 
-<%= link_to 'Sort', exchange_sort_path(@exchange) %>
+    <%= link_to 'Sort', exchange_sort_path(@exchange) %>
+
+  </div>
+</div>

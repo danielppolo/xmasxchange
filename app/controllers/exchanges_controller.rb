@@ -2,6 +2,9 @@ class ExchangesController < ApplicationController
   def index
     @exchange = Exchange.new
     @exchanges = Exchange.all
+    @active = Exchange.all.select { |e| e.active? }
+    @today = Exchange.all.select { |e| e.today? }
+    @past = Exchange.all.select { |e| e.past? }
   end
 
   def show
@@ -10,8 +13,12 @@ class ExchangesController < ApplicationController
   end
 
   def create
-    x = Exchange.create(exchange_params)
-    redirect_to exchange_path(x)
+    x = Exchange.new(exchange_params)
+    if x.save
+      redirect_to exchange_path(x)
+    else
+      redirect_to exchanges_path
+    end
   end
 
   def update

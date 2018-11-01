@@ -4,4 +4,16 @@ class Exchange < ApplicationRecord
 
   validates :name, presence: true
   validates :date, presence: true
+
+  def active?
+    (self.date <=> Date.today) == 1
+  end
+
+  def today?
+    (self.date <=> Date.today) == 0
+  end
+
+  def past?
+    (self.date <=> Date.today) == -1
+  end
 end

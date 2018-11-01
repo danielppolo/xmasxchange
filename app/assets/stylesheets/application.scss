@@ -1,0 +1,303 @@
+@import 'animate';
+@import url('https://fonts.googleapis.com/css?family=Space+Mono:400,700');
+$primary: #E7EA15;
+$secondary: #E4333B;
+$black: #0D1218;
+$title: 36px;
+$subtitle: 24px;
+$text: 18px;
+
+::-moz-selection { /* Code for Firefox */
+    color: white;
+    background: $secondary;
+}
+
+::selection {
+    color: white;
+    background: $secondary;
+}
+
+body *{
+  font-family: 'Space Mono', monospace;
+  color: $black;
+}
+
+p, li, a {
+  font-size: $text;
+  transition: 0.5s ease;
+}
+
+a:hover{
+  color: $secondary;
+}
+
+ul{
+  list-style-type: square;
+  list-style-position: outside;
+  margin: 0 0 2em 0;
+  li{
+    color: $black;
+  }
+}
+
+h1{
+  font-size: $title;
+  position: relative;
+  display: block;
+  margin-top: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+h2{
+  font-size: $subtitle;
+  position: relative;
+  display: block;
+  margin-top: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+h3{
+  display: block;
+  margin-top: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+h1::after, h2::after{
+  content: attr(data-content);
+  position: absolute;
+  color: transparent;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40%;
+  background-color: $primary;
+  z-index: -1;
+  animation: fadein 0.5s normal forwards ease-in-out;
+  animation-iteration-count: 1;
+  animation-iteration-count: 1;
+  transition: 0.5s ease;
+}
+
+h1:hover::after, h2:hover::after{
+  bottom: 0;
+  left: -20px;
+  width: 100%;
+  height: 40%;
+}
+
+a{
+  width: 100%;
+}
+
+input, select{
+  margin-bottom: 1em;
+    border: 5px solid;
+  border-color: $primary;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  transition: 0.5s ease;
+}
+
+input[type=text],input[type=password]{
+  background-color: transparent;
+  width: 100%;
+  text-align: center;
+  font-weight: 700;
+  font-size: $text;
+}
+input[type=text]:focus,input[type=password]:focus{
+  border-color: $secondary;
+}
+
+input[type=text]::placeholder,input[type=password]::placeholder{
+  text-align: center;
+  font-family: 'Space Mono', monospace;
+    font-weight: 400;
+}
+
+input[type=submit]{
+  width: 100%;
+  font-weight: 700;
+}
+
+select{
+  border: none;
+  background-color: transparent;
+  font-size: $text;
+  -webkit-appearance: none;
+}
+
+select::after{
+  content: attr(data);
+  position: absolute;
+  color: transparent;
+  top: 0.2em;
+  left: 10px;
+  width: 100%;
+  height: 115%;
+  background-color: $primary;
+  z-index: -1;
+  transition: 0.5s ease;
+}
+
+label{
+  display: none !important;
+}
+
+.window-wrapper{
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+}
+
+.flex-center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-vertical{
+  flex-direction: column !important;
+}
+
+.flex-top{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+
+.wrapper-padding{
+  padding: 10vw;
+}
+
+.text-center{
+  text-align: center;
+}
+
+.bottom-border{
+  border: 5px solid;
+  border-color: $primary;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
+
+.all-border{
+  border: 5px solid;
+  border-color: $primary;
+}
+
+.button{
+  width: 100%;
+  border: 5px solid;
+  border-color: $black;
+  background-color: transparent;
+  font-size: $subtitle;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0.5em 1em;
+  position: relative;
+  transition: 0.5s ease;
+}
+.button-sm{
+  width: 100%;
+  border: 5px solid;
+  border-color: $black;
+  background-color: transparent;
+  font-size: $text;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0.5em 1em;
+  position: relative;
+  transition: 0.5s ease;
+}
+
+.button::after,.button-sm::after{
+  content: attr(data);
+  position: absolute;
+  color: transparent;
+  top: 0.2em;
+  left: 10px;
+  width: 100%;
+  height: 115%;
+  background-color: $primary;
+  z-index: -1;
+  transition: 0.5s ease;
+}
+
+.button:hover::after,.button-sm:hover::after{
+  transform: scale(1.05);
+  z-index: -999;
+  background-color: $secondary;
+}
+
+.button:hover{
+  color: white;
+}
+
+.date{
+  display: flex;
+  justify-content: space-between;
+}
+
+.relative{
+  position: relative;
+}
+.badge{
+  position: absolute;
+  top: -30px;
+  right: -60px;
+  border: 3px solid $black;
+  padding: 0.2em 0.5em;
+  transition: 0.5s ease;
+}
+
+.badge::after{
+  content: attr(data);
+  position: absolute;
+  color: transparent;
+  top: 0.2em;
+  left: 5px;
+  width: 100%;
+  height: 115%;
+  background-color: transparent;
+  z-index: -1;
+  transition: 0.5s ease;
+}
+.badge:hover::after{
+  background-color: $primary;
+}
+
+.next-page{
+  position: absolute;
+  bottom: 10px;
+  font-size: $subtitle;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+
+  p{
+    font-size: 10px;
+  }
+}
+
+
+@media only screen and (max-width: 600px) {
+.flex-center{
+  display: block;
+}
+
+.flex-top{
+  display: block;
+}
+
+.wrapper-padding{
+  padding: 10vw 2vw;
+}
+
+}

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :people, only:[:show] do
     resources :gifts, only:[:create]
   end
+  get 'people/:id/:key', to: 'people#peer', as: 'peer'
   root 'exchanges#index'
 end
 

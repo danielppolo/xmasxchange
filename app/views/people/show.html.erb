@@ -1,21 +1,30 @@
-<h1>Welcome <%= @person.name %></h1>
+<div class="window-wrapper flex-center">
+  <div>
+    <h1>Welcome <%= @person.name %></h1>
 
-<h3>Your gift list</h3>
-<ul>
-  <% @person.gifts.each do |gift| %>
-    <li><%= gift.name %></li>
-  <% end %>
-</ul>
+    <h3>Your gift list is: </h3>
+    <ul>
+      <% @person.gifts.each do |gift| %>
+      <li><%= gift.name %></li>
+      <% end %>
+    </ul>
+    <h3>Add gift</h3>
+    <%= simple_form_for [@person, @gift] do |f| %>
+    <%= f.input :name, placeholder: 'gift name' %>
+    <%= f.button :button, "add to list", class: "button-sm" %>
+    <% end %>
 
-<%= simple_form_for [@person, @gift] do |f| %>
-  <%= f.input :name %>
-  <%= f.submit "Add gift to list", class: "btn btn-primary" %>
-<% end %>
-
-<h2>Reveal peer</h2>
-<p>Your peer is:<%= @person.person.name %></p>
-<span>See his/her giftlist</span>
+    <% if @person.person %>
+    <%= form_tag("/search", method: "post") do %>
+    <%= label_tag(:q, "Search for:") %>
+    <%= submit_tag("Search") %>
+    <% end %>
+    <% end %>
 <!--%= simple_form_for (@person) do |f| %>
   %= f.input :key %>
   %= f.submit "Reveal", class: "btn btn-primary" %>
-% end % -->
+  % end % -->
+
+</div>
+</div>
+

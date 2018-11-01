@@ -12,6 +12,15 @@ class PeopleController < ApplicationController
     @person = Person.find(params[:id])
   end
 
+  def peer
+    @person = Person.find(params[:id])
+    if params[:key] == @person.key
+      @peer = @person.person
+    else
+      redirect_to person_path(@person)
+    end
+  end
+
   private
 
   def person_params
